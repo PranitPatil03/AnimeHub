@@ -6,8 +6,6 @@ export default async function Home() {
   const pageNumber = 1;
   const data = await fetchAnime(pageNumber);
 
-  console.log(data);
-
   return (
     <>
       <main className="sm:p-16 py-16 px-8 flex flex-col gap-10">

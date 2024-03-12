@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { episodes, star } from "../../public";
+import { MouseEventHandler } from "react";
+import { fetchAnime, fetchAnimeById } from "@/app/action";
 
 export interface AnimeProp {
   id: string;
@@ -18,7 +22,18 @@ interface Prop {
   index: number;
 }
 
+const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
+
+  console.log("eeee",e)
+  
+
+  // const data = await fetchAnimeById(id);
+
+  // console.log("Hello this is my data", data);
+};
+
 const AnimeCard = ({ anime }: Prop) => {
+
   return (
     <>
       <div className="max-w-sm rounded relative w-full">
@@ -27,7 +42,8 @@ const AnimeCard = ({ anime }: Prop) => {
             src={`https://shikimori.one/${anime.image.original}`}
             alt={anime.name}
             fill
-            className="rounded-xl"
+            className="rounded-xl cursor-pointer"
+            onClick={(e) => handleClick(e)}
           />
         </div>
         <div className="py-4 flex flex-col gap-3">
