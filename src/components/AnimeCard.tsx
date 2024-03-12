@@ -22,18 +22,18 @@ interface Prop {
   index: number;
 }
 
-const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
+const handleClick = async (
+  e: React.MouseEvent<HTMLDivElement>,
+  anime: AnimeProp
+) => {
+  e.preventDefault();
 
-  console.log("eeee",e)
-  
+  const { id } = anime;
 
-  // const data = await fetchAnimeById(id);
-
-  // console.log("Hello this is my data", data);
+  const data = await fetchAnimeById(id);
 };
 
 const AnimeCard = ({ anime }: Prop) => {
-
   return (
     <>
       <div className="max-w-sm rounded relative w-full">
@@ -43,7 +43,7 @@ const AnimeCard = ({ anime }: Prop) => {
             alt={anime.name}
             fill
             className="rounded-xl cursor-pointer"
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => handleClick(e, anime)}
           />
         </div>
         <div className="py-4 flex flex-col gap-3">
