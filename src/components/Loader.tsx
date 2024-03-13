@@ -7,13 +7,15 @@ import { useInView } from "react-intersection-observer";
 import { fetchAnime } from "@/app/action";
 import AnimeCard, { AnimeProp } from "./AnimeCard";
 
+let pageNumber = 2;
+
 const Loader = () => {
   const { ref, inView } = useInView();
   const [AnimeData, setData] = useState<AnimeProp[]>([]);
 
   useEffect(() => {
     if (inView) {
-      fetchAnime(2).then((data) => {
+      fetchAnime(pageNumber++).then((data) => {
         setData([...AnimeData, ...data]);
       });
     }

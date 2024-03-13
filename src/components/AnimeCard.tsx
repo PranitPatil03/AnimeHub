@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { episodes, star } from "../../public";
-import { MouseEventHandler } from "react";
-import { fetchAnime, fetchAnimeById } from "@/app/action";
+import { fetchAnimeById } from "@/app/action";
+import { getTranslation } from "@/services/translate";
+import { useEffect, useState } from "react";
 
 export interface AnimeProp {
   id: string;
   name: string;
+  description: string;
   image: {
     original: string;
   };
@@ -31,6 +33,17 @@ const handleClick = async (
   const { id } = anime;
 
   const data = await fetchAnimeById(id);
+  console.log(data);
+  fetchTranslation(data.description);
+};
+
+const fetchTranslation = async (description: string) => {
+  try {
+    const translation = await getTranslation(description);
+    console.log(translation);
+  } catch (error) {
+    console.error("Error fetching translation:", error);
+  }
 };
 
 const AnimeCard = ({ anime }: Prop) => {

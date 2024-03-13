@@ -1,8 +1,11 @@
 "use server";
 
 import axios from "axios";
+import exp from "constants";
 
-export const fetchAnime = async ({ page }: number) => {
+export const fetchAnime = async (page: number) => {
+  console.log("Page No", page);
+
   const data = await axios.get(
     `https://shikimori.one/api/animes?page=${page}&limit=8&order=popularity`
   );
@@ -23,3 +26,5 @@ export const fetchAnimeById = async (id: string) => {
 
   return animeData;
 };
+
+
