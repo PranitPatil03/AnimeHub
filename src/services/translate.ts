@@ -20,8 +20,6 @@ export const getTranslation = async (data: string) => {
     const response = await axios.request(options);
 
     const { data } = response;
-
-    console.log(data);
   } catch (error) {
     console.error(error);
   }

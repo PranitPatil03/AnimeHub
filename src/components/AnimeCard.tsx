@@ -5,6 +5,7 @@ import { episodes, star } from "../../public";
 import { fetchAnimeById } from "@/app/action";
 import { getTranslation } from "@/services/translate";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface AnimeProp {
   id: string;
@@ -24,7 +25,7 @@ interface Prop {
   index: number;
 }
 
-const handleClick = async (
+/* const handleClick = async (
   e: React.MouseEvent<HTMLDivElement>,
   anime: AnimeProp
 ) => {
@@ -35,7 +36,7 @@ const handleClick = async (
   const data = await fetchAnimeById(id);
   console.log(data);
   fetchTranslation(data.description);
-};
+}; */
 
 const fetchTranslation = async (description: string) => {
   try {
@@ -47,6 +48,17 @@ const fetchTranslation = async (description: string) => {
 };
 
 const AnimeCard = ({ anime }: Prop) => {
+
+    const router = useRouter();
+
+  const handleClick = async (e: React.MouseEvent<HTMLDivElement>,anime: AnimeProp) => {
+    e.preventDefault();
+    const { id } = anime;
+    const data = await fetchAnimeById(id);
+    router.push(`/anime/${id}`);
+  };
+
+
   return (
     <>
       <div className="max-w-sm rounded relative w-full">

@@ -20,8 +20,6 @@ export const fetchAnimeById = async (id: string) => {
 
   const data = await axios.get(`https://shikimori.one/api/animes/${id}`);
 
-  console.log(data);
-
   const { data: animeData } = data;
 
   return animeData;
