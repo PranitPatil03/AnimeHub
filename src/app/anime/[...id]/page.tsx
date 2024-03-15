@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchAnimeById } from "@/app/action";
 import { getTranslation } from "@/services/translate";
+import { AnimeProp } from "@/components/AnimeCard";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default function AnimeProfilePage({
@@ -12,7 +13,7 @@ export default function AnimeProfilePage({
     id: string;
   };
 }) {
-  const [animeData, setAnimeData] = useState(null);
+  const [animeData, setAnimeData] = useState<AnimeProp>();
   const [translatedDescription, setTranslatedDescription] =
     useState<string>("");
 
